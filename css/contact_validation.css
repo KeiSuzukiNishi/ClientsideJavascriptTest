@@ -78,6 +78,8 @@ body {
 }
 .alert {
   color: #d14539;
-  padding: 20px;
+}
+
+.alert_bg {
   background: rgba(230,169,171,.5);
 }

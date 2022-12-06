@@ -1,21 +1,22 @@
 function emailValidation() {
-    const form = document.getElementById('form');
-    form.addEventListener('input', e => {
-      //submitのときのやつ「e.preventDefault();」
+  const form = document.getElementById('form');
+  const emailComfirmField = document.getElementById('email_confirm');
+  const element = document.createElement('p');
+  const message = document.createTextNode("Eメールが一致しません");
+  const contentField = document.getElementById('content_field');
+  element.appendChild(message);
+  emailComfirmField.addEventListener('input', e => {
       if(form.email.value !== form.email_confirm.value) {
-        const element = document.createElement('p')
-        element.innerText ="Eメールが一致しません"
-        const error = document.getElementById('error')
-
-
-        const contactLine = document.getElementsByClassName('contact_line')
-        const tBody = (contactLine.parentElement);
-        tBody.insertBefore(element, error); //ここがおかしいはずですが、何がだめか分かりません。
-
-
+        contentField.parentNode.insertBefore(element, contentField);
         element.classList.add("alert");
-      } 
+        emailComfirmField.classList.add("alert_bg");
+      } else {
+        element.parentNode.removeChild(element);
+        element.classList.remove("alert");
+        emailComfirmField.classList.remove("alert_bg");
+      }
     });
   };
   
   window.onload = emailValidation;
+
